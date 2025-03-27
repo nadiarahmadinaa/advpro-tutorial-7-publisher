@@ -77,6 +77,9 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1. Sesuai dengan konsep design pattern Observer, banyak subscriber dapat berlangganan ke suatu publisher. Namun, jenis dari subscriber ini bervariasi atau tidaknya tergantung environment yang kita bangun. Jika BambangShop ingin memperluas subscribernya dengan melayani berbagai macam subscriber class, maka penting untuk melakukan implementasi interface atau trait di Rust. Hal ini untuk menjamin berjalannya fungsionalitas notifikasi pada semua jenis class subscriber. Namun, jika BambangShop memiliki jenis subscriber yang monoton, implementasi single struct saja sudah cukup.
+2. Dalam implementasi Vec atau list, ketika kita ingin mencari id atau url maka harus iterasi satu-persatu seluruh isi Vec. Dalam dataset yang kecil, ini tidak menjadi masalah besar. Namun dalam dataset yang besar seperti kasus dimana BambangShop memiliki subscriber banyak, maka akan memakan waktu yang sangat lama (O(n) time complexity) untuk menemukan id atau url ini. Dengan DashMap, kita bisa melakukan efisiensi waktu menjadi O(1) time complexity. Oleh karena itu, sangat disarankan untuk beralih ke DashMap, khususnya apabila kita ingin mempersiapkan untuk skalabilitas yang besar.
+3. Sebaiknya kita tetap mengimplementasikan DashMap, karena DashMap di Rust sudah bersifat thread safe. Lain halnya dengan Singleton Pattern yang membuka aksesnya secara global dan tidak thread safe. Jika kita mengimplementasikan singleton ini dengan lock untuk mendapatkan keamanan yang serupa dengan DashMap, extra measure ini akan memperlambat program. Maka dari itu, singleton tidak efektif untuk digunakan.
 
 #### Reflection Publisher-2
 
