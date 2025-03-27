@@ -82,5 +82,10 @@ This is the place for you to write reflections:
 3. Sebaiknya kita tetap mengimplementasikan DashMap, karena DashMap di Rust sudah bersifat thread safe. Lain halnya dengan Singleton Pattern yang membuka aksesnya secara global dan tidak thread safe. Jika kita mengimplementasikan singleton ini dengan lock untuk mendapatkan keamanan yang serupa dengan DashMap, extra measure ini akan memperlambat program. Maka dari itu, singleton tidak efektif untuk digunakan.
 
 #### Reflection Publisher-2
+1. Dalam MVC biasa, business logic dan penyimpanan data memang berada satu package yang sama, yaitu model. Namun dalam project ini kita memisahkan Repository dan Service sebagai bentuk kepatuhan terhadap SRP. SRP adalah Single Responsibility Principle, salah satu bagian dari SOLID principle. Prinsip ini dilakukan untuk meningkatkan readability dan maintainability dari kode. Scalability dan testing juga dipermudah dengan mekanisme ini, karena memberi fleksibilitas lebih tanpa constraint yang terlalu berat.
+
+2. Jika kita hanya menggunakan Model sebagai storage data dan business logic, maka ini akan menyulitkan development kedepannya. Sebagai contoh, jika ketiga model ini terikat dan berkomunikasi secara langsung, seperti Program mengirim notifikasi ke subscriber, maka terdapat resiko dimana suatu perubahan dapat merusak model lain juga. Maka dari itu, kita implementasikan service agar dependency antar model tidak begitu kuat sehingga berkemungkinan kecil untuk saling merusak.
+
+3. Postman bermanfaat bagi saya untuk melakukan testing API. Terdapat banyak fitur postman seperti fitur yang membolehkan kita memasukkan parameter, mengubah HTTP Header, dan mengimplementasikan cookies. Dengan postman, testing API dipermudah karena kita tidak harus melakukannya by terminal seperti menggunakan cURL. Selain itu, kita bisa share API collection seperti yang dilakukan pada tutorial ini sehingga kolaborasi dengan tim dapat berjalan lebih mudah dan cepat.
 
 #### Reflection Publisher-3
